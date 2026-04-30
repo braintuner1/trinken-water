@@ -1,0 +1,194 @@
+/* ProfileCard  adapted from reactbits.dev */
+.pc-card-wrapper {
+  --pointer-x: 50%;
+  --pointer-y: 50%;
+  --pointer-from-center: 0;
+  --pointer-from-top: 0.5;
+  --pointer-from-left: 0.5;
+  --rotate-x: 0deg;
+  --rotate-y: 0deg;
+  --background-x: 50%;
+  --background-y: 50%;
+  --card-radius: 28px;
+  --behind-glow-color: hsl(200 100% 65% / 0.55);
+  --behind-glow-size: 55%;
+  --inner-gradient: linear-gradient(145deg, hsl(200 95% 45% / 0.55) 0%, hsl(190 100% 70% / 0.35) 100%);
+  perspective: 1000px;
+  position: relative;
+  width: 100%;
+  max-width: 320px;
+  aspect-ratio: 0.78;
+  margin: 0 auto;
+}
+
+.pc-behind-glow {
+  position: absolute;
+  inset: 0;
+  border-radius: var(--card-radius);
+  background: radial-gradient(var(--behind-glow-size) at var(--pointer-x) var(--pointer-y), var(--behind-glow-color), transparent 70%);
+  filter: blur(40px);
+  opacity: 0.9;
+  z-index: 0;
+  pointer-events: none;
+}
+
+.pc-card-shell {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  border-radius: var(--card-radius);
+  transform-style: preserve-3d;
+  transform: rotateX(var(--rotate-x)) rotateY(var(--rotate-y));
+  transition: transform 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+  cursor: pointer;
+  z-index: 1;
+}
+
+.pc-card-shell.entering {
+  transition: transform 0.18s ease-out;
+}
+
+.pc-card-inner {
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  overflow: hidden;
+  background: var(--inner-gradient), hsl(215 85% 18%);
+  box-shadow:
+    0 30px 60px -20px hsl(215 90% 15% / 0.5),
+    inset 0 1px 0 hsl(0 0% 100% / 0.15);
+}
+
+/* Glare / shine */
+.pc-card-shine {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at var(--pointer-x) var(--pointer-y), hsl(0 0% 100% / 0.35), transparent 45%);
+  mix-blend-mode: overlay;
+  pointer-events: none;
+}
+
+.pc-card-grain {
+  position: absolute;
+  inset: 0;
+  background: var(--grain);
+  background-size: 220px 220px;
+  opacity: 0.12;
+  mix-blend-mode: overlay;
+  pointer-events: none;
+}
+
+.pc-card-icon {
+  position: absolute;
+  inset: 0;
+  background: var(--icon) center/60% no-repeat;
+  opacity: 0.07;
+  pointer-events: none;
+}
+
+.pc-card-avatar {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: top center;
+  z-index: 1;
+}
+
+.pc-card-content {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 22px;
+  z-index: 2;
+  color: white;
+}
+
+.pc-card-header {
+  text-align: left;
+}
+
+.pc-card-name {
+  font-family: 'Fraunces', Georgia, serif;
+  font-size: 1.7rem;
+  font-weight: 700;
+  margin: 0;
+  text-shadow: 0 2px 8px hsl(215 90% 10% / 0.5);
+}
+
+.pc-card-title {
+  font-size: 0.8rem;
+  font-weight: 500;
+  opacity: 0.85;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  margin-top: 2px;
+}
+
+.pc-card-userinfo {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 10px 12px;
+  border-radius: 16px;
+  background: hsl(0 0% 100% / 0.12);
+  backdrop-filter: blur(14px);
+  border: 1px solid hsl(0 0% 100% / 0.18);
+}
+
+.pc-card-mini-avatar {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  object-fit: cover;
+  background: hsl(0 0% 100% / 0.2);
+}
+
+.pc-card-userinfo-text {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  min-width: 0;
+}
+
+.pc-card-handle {
+  font-weight: 600;
+  font-size: 0.85rem;
+}
+
+.pc-card-status {
+  font-size: 0.7rem;
+  opacity: 0.75;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.pc-card-status::before {
+  content: '';
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: hsl(140 80% 55%);
+  box-shadow: 0 0 8px hsl(140 80% 55%);
+}
+
+.pc-card-contact-btn {
+  background: white;
+  color: hsl(215 85% 22%);
+  border: none;
+  padding: 8px 14px;
+  border-radius: 10px;
+  font-weight: 600;
+  font-size: 0.8rem;
+  cursor: pointer;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.pc-card-contact-btn:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 8px 20px hsl(0 0% 0% / 0.25);
+}
