@@ -3,8 +3,7 @@
   "private": true,
   "version": "0.0.0",
   "type": "module",
-  "homepage": "https://braintuner1.github.io/trinken-water",
-
+  "homepage": "https://braintuner1.github.io/trinken/",
   "scripts": {
     "dev": "vite",
     "build": "vite build",
